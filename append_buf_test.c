@@ -11,10 +11,10 @@
 int test_append_to_empty(test_context_t * tctx){
   char * strs[] = {"apa", "gnu-gnu-gnu", "gitarr"};
 
-  append_buf_t * target = http_util_append_buf_create(20);
+  append_buf_t * target = append_buf_create(20);
 
   int res;
-  res = http_util_append_to_buf(target, (uint8_t *)strs[0], strlen(strs[0]));
+  res = append_to_buf(target, (uint8_t *)strs[0], strlen(strs[0]));
 
   check(res == 0, tctx);
   printf("%s\n", target->buf);
@@ -22,16 +22,16 @@ int test_append_to_empty(test_context_t * tctx){
   check( target->pos == 3, tctx);
   check( target->buf_size == 20, tctx);
 
-  http_util_append_buf_destroy(target);
+  append_buf_destroy(target);
 
-  target = http_util_append_buf_create(TEST_CHUNK_SIZE);
-  res = http_util_append_to_buf(target, (uint8_t *)strs[1], strlen(strs[1]));
+  target = append_buf_create(TEST_CHUNK_SIZE);
+  res = append_to_buf(target, (uint8_t *)strs[1], strlen(strs[1]));
   check(res == 0, tctx);
   printf("%s\n", target->buf);
   check( strcmp((char *)target->buf, "gnu-gnu-gnu")==0, tctx);
   check( target->pos == 11, tctx);
   check( target->buf_size == 11, tctx);
-  http_util_append_buf_destroy(target);
+  append_buf_destroy(target);
 
   return 0;
 }
@@ -42,30 +42,30 @@ int test_many(test_context_t * tctx){
   };
 
 
-  append_buf_t * target = http_util_append_buf_create(64);
+  append_buf_t * target = append_buf_create(64);
   int res, i;
 
   for(i = 0; i < 198; i++){
-    res = http_util_append_to_buf(target, (uint8_t *)strs[i], strlen(strs[i]));
+    res = append_to_buf(target, (uint8_t *)strs[i], strlen(strs[i]));
   }
   printf("%d, %lu, %d\n", target->pos, strlen((char *)target->buf), target->buf_size);
   printf("%s\n", (char *)target->buf);
-  http_util_append_buf_destroy(target);
+  append_buf_destroy(target);
   return 0;
 }
 
 int test_append_long(test_context_t * tctx){
 
-  append_buf_t * target = http_util_append_buf_create(64);
+  append_buf_t * target = append_buf_create(64);
 
   int res;
-  http_util_append_to_buf(target, (uint8_t *)LONG_STR, strlen(LONG_STR));
-  http_util_append_to_buf(target, (uint8_t *)"\r\n", strlen("\r\n"));
+  append_to_buf(target, (uint8_t *)LONG_STR, strlen(LONG_STR));
+  append_to_buf(target, (uint8_t *)"\r\n", strlen("\r\n"));
 
   printf("%d, %lu, %d\n", target->pos, strlen((char *)target->buf), target->buf_size);
   printf("%s\n", (char *)target->buf);
 
-  http_util_append_buf_destroy(target);
+  append_buf_destroy(target);
   return 0;
 }
 

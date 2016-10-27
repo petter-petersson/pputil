@@ -3,14 +3,14 @@
 #include <stdio.h>
 #include "append_buf.h"
 
-append_buf_t * http_util_append_buf_create(uint8_t mem_chunk_size){
+append_buf_t * append_buf_create(uint8_t mem_chunk_size){
 
   append_buf_t * ret;
 
   ret = malloc(sizeof(*ret));
 
   if (ret == NULL){
-    perror("EOM http_util_append_buf_create");
+    perror("EOM append_buf_create");
     return NULL;
   }
   ret->buf = NULL;
@@ -21,7 +21,7 @@ append_buf_t * http_util_append_buf_create(uint8_t mem_chunk_size){
   return ret;
 }
 
-void http_util_append_buf_destroy(append_buf_t * buf){
+void append_buf_destroy(append_buf_t * buf){
   if(buf == NULL){
     return;
   }
@@ -32,7 +32,7 @@ void http_util_append_buf_destroy(append_buf_t * buf){
   buf = NULL;
 }
 
-int http_util_append_to_buf(append_buf_t * buf, uint8_t * append, uint32_t append_size){
+int append_to_buf(append_buf_t * buf, uint8_t * append, uint32_t append_size){
   uint8_t * tmp;
 
   if(buf->buf == NULL){

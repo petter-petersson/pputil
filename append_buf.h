@@ -10,8 +10,8 @@ struct append_buf_s {
 
 typedef struct append_buf_s append_buf_t;
 
-append_buf_t * http_util_append_buf_create(uint8_t mem_chunk_size);
-void http_util_append_buf_destroy(append_buf_t * buf);
-int http_util_append_to_buf(append_buf_t * buf, uint8_t * append, uint32_t append_size);
+append_buf_t * append_buf_create(uint8_t mem_chunk_size);
+void append_buf_destroy(append_buf_t * buf);
+int append_to_buf(append_buf_t * buf, uint8_t * append, uint32_t append_size);
 
 #endif

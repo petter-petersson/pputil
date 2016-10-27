@@ -4,9 +4,9 @@ CFLAGS=-DDEBUG -g
 %.o: %.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
-all: pputil.a
+all: libpputil.a
 
-pputil.a: append_buf.o
+libpputil.a: append_buf.o
 	$(AR) rc $@ $^
 
 test: append_buf_test 
