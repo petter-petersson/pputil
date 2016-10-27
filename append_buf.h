@@ -1,5 +1,5 @@
-#ifndef __UTIL_H
-#define __UTIL_H
+#ifndef __APPEND_BUF_H
+#define __APPEND_BUF_H
 
 struct append_buf_s {
   uint8_t * buf;
