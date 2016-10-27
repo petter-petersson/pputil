@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "append_buf.h"
 
-append_buf_t * append_buf_create(uint8_t mem_chunk_size){
+append_buf_t * append_buf_create(uint32_t mem_chunk_size){
 
   append_buf_t * ret;
 
