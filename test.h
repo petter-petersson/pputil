@@ -1,6 +1,8 @@
 #ifndef __TEST_H
 #define __TEST_H
 
+#include <stdint.h>
+
 typedef struct test_context_s {
   uint16_t test_passed;
   uint16_t test_failed;

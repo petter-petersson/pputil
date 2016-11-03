@@ -1,5 +1,5 @@
 -include config.mk
-CFLAGS=-DDEBUG -g
+override CFLAGS+= -std=c99 -D_GNU_SOURCE
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $< -o $@

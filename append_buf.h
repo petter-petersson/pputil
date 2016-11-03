@@ -1,6 +1,8 @@
 #ifndef __APPEND_BUF_H
 #define __APPEND_BUF_H
 
+#include <stdint.h>
+
 struct append_buf_s {
   uint8_t * buf;
   uint32_t pos;
