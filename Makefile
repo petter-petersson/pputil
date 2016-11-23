@@ -6,13 +6,17 @@ override CFLAGS+= -std=c99 -D_GNU_SOURCE
 
 all: libpputil.a
 
-libpputil.a: append_buf.o strndup_unescaped.o mkdir_p.o log.o
+libpputil.a: append_buf.o strndup_unescaped.o mkdir_p.o log.o pphash.o
 	$(AR) rc $@ $^
 
-test: append_buf_test strndup_unescaped_test log_test 
+test: append_buf_test strndup_unescaped_test log_test pphash_test 
 	./append_buf_test
 	./strndup_unescaped_test
 	./log_test
+	./pphash_test
+
+pphash_test: pphash-tests.o libpputil.a
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS) $(LIBS)
 
 strndup_unescaped_test: test.o strndup_unescaped_test.o strndup_unescaped.o
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS) $(LIBS)
